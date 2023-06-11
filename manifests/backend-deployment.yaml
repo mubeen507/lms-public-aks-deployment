@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: lms-public-backend-container
-          image: theacrnow.azurecr.io/lms-public-backend
+          image: ${LMS_PUBLIC_BACKEND_IMAGE}
           ports:
             - containerPort: 8080
           envFrom:

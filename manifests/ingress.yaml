@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.azure.com/tls-cert-keyvault-uri: ${LMS_PUBLIC_TLS_CERT_KEYVAULT_URI}
+  name: aks-helloworld
+spec:
+  ingressClassName: webapprouting.kubernetes.azure.com
+  rules:
+    - host: ${LMS_PUBLIC_DOMAIN_NAME}
+      http:
+        paths:
+          - backend:
+              service:
+                name: lms-public-backend-service
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - ${LMS_PUBLIC_DOMAIN_NAME}
+      secretName: keyvault-aks-helloworld
