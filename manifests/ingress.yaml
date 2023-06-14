@@ -15,8 +15,16 @@ spec:
                 name: lms-public-backend-service
                 port:
                   number: 80
+            path: /api
+            pathType: Prefix
+          - backend:
+              service:
+                name: lms-public-frontend-service
+                port:
+                  number: 80
             path: /
             pathType: Prefix
+
   tls:
     - hosts:
         - ${LMS_PUBLIC_DOMAIN_NAME}

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lms-public-frontend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lms-public-frontend
+  template:
+    metadata:
+      labels:
+        app: lms-public-frontend
+    spec:
+      containers:
+        - name: lms-public-frontend-container-label
+          image: ${LMS_PUBLIC_FRONTEND_IMAGE}
+          ports:
+            - containerPort: 80
